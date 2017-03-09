@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<style>
+	html, body{
+		width:100%;
+		height:100%;
+		background-color:#F4C3BF;
+	}
+
+	.flex-center{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.container1{
+		width:100%;
+		height:100%;
+		padding-top: 80px;
+		padding-bottom: 10px;
+	}
+
+	.container2{
+		width:550px;
+		height:550px;
+		background-color:#F99665;
+	}
+
+	.container3{
+		width:75%;
+		height:75%;
+		background-color:#FA8A38;
+	}
+
+	.container4{
+		width:75%;
+		height:75%;
+		background-color:#FD7A39;
+	}
+
+	@keyframes spin {
+		50%{
+			transform:rotateZ(-180deg);
+		}
+		100% { transform: rotateZ(180deg); }
+}
+	.rotate-class {
+	animation: spin 5s infinite;
+}
+
+</style>
+</head>
+
+<body>
+	<div>
+		<div class="container1 flex-center">
+			<div class="container2 flex-center rotate-class">
+				<div class="container3 flex-center rotate-class">
+					<div class="container4 flex-center rotate-class"></div>
+	</div>
+</body>
+</html>
