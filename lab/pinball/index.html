@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+@font-face { font-family: "avenir"; src: url("avenir.ttf"); }
+
+html, body {
+	height: 100%;
+	width:100%;
+	padding-right:30px;
+	padding-left:20px;
+	padding-top:0px;
+	padding-bottom:20px;
+	overflow: hidden;
+}
+
+img{
+	position: absolute;
+	top: 58px;
+	left:542px;
+	width:40px;
+	height:40px;
+}
+
+
+h1 {
+	position: absolute;
+	font-size:75px;
+	text-align:left;
+	font-family: "avenir"
+}
+
+</style>
+</head>
+<body>
+
+<h1>I pledge allegiance to the flag of the United States of America and to the Republic for which it stands, one nation, indivisible, with liberty and justice for all.</h1>
+
+<img class="trump" src = "trump.png">
+
+</body>
+
+<script>
+// var theLoop = setInterval(gameLoop, 17); //should loopFunction be changed to gameLoop?
+var velocityX = 0;
+var velocityY= 0;
+
+var pinball = document.querySelector('.trump');
+
+
+function gameLoop(){
+	pinball.style.top = pinball.style.top + velocityY + 200
+	pinball.style.left = pinball.style.left + velocityX + 500
+
+if(pinball.style.top < 0){
+	velocityY = -velocityY;
+}
+if(pinball.style.right < 0){
+	velocityX = -velocityX;
+}
+if(pinball.style.bottom < 0){
+	velocityY = -velocityY;
+}
+if(pinball.style.left < 0){
+	velocityX = -velocityX;
+} //need to define 'pinball' somewhere??
+console.log('hi im working');
+
+}
+// mouseDragged = function() {
+//     image(image, mouseX, mouseY, 40, 40);
+//     velocityY = 1;
+//     velocityX = 1;
+//     gameLoop();
+// }
+//on mouse drag and release, velocityX = 1;
+//velocityY = 1;
+var selected = null, // Object of the element to be moved
+    x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+    x_elem = 0, y_elem = 0; // Stores top, left values (edge) of the element
+
+// Will be called when user starts dragging an element
+function _drag_init(elem) {
+    // Store the object of the element which needs to be moved
+    selected = elem;
+    x_elem = x_pos - selected.offsetLeft;
+    y_elem = y_pos - selected.offsetTop;
+}
+
+// Will be called when user dragging an element
+function _move_elem(e) {
+    x_pos = document.all ? window.event.clientX : e.pageX;
+    y_pos = document.all ? window.event.clientY : e.pageY;
+    if (selected !== null) {
+        selected.style.left = (x_pos - x_elem) + 'px';
+        selected.style.top = (y_pos - y_elem) + 'px';
+    }
+}
+
+// Destroy the object when we are done
+function _destroy() {
+    selected = null;
+    // gameLoop();
+    setInterval(function() {
+    gameLoop();
+}, 17);
+}
+
+// Bind the functions...
+pinball.onmousedown = function () {
+    _drag_init(this);
+    return false;
+};
+
+document.onmousemove = _move_elem;
+document.onmouseup = _destroy;
+</script>
+</html>
